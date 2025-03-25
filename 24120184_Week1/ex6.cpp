@@ -8,28 +8,24 @@ int solutions = 0;
 
 bool CheckSave(int row,int col)
 {   
-    for (int i = 0; i < row ;i++)
-    {   
-        for (int i = 0 ; i < row ;i++)
-        {
-            if (board[i][col] == 1) //Kiểm tra đã có quân hậu nào nằm trên cột chưa nếu có trả về false
-                return false;
+    for (int i = 0 ; i < row ;i++)
+    {
+        if (board[i][col] == 1) //Kiểm tra đã có quân hậu nào nằm trên cột chưa nếu có trả về false
+            return false;
 
-            int k = (row - i);
+        int k = (row - i);
 
-            //Kiểm tra đường chéo trái, tổng quát các điểm của đường chéo trái có tọa độ [row - k][col - k] hay [i][col - k]
-            //Với k tùy ý sao cho (col - k) >= 0 tức là vị trí của 1 phần tử đường chéo nằm trong bàn cờ
-            if (col - k >= 0 && board[i][col - k] == 1) 
-                return false;//Phát hiện quân hậu nằm trên đường chéo trái
+        //Kiểm tra đường chéo trái, tổng quát các điểm của đường chéo trái có tọa độ [row - k][col - k] hay [i][col - k]
+        //Với k tùy ý sao cho (col - k) >= 0 tức là vị trí của 1 phần tử đường chéo nằm trong bàn cờ
+        if (col - k >= 0 && board[i][col - k] == 1) 
+            return false;//Phát hiện quân hậu nằm trên đường chéo trái
 
-            //Kiểm tra đường chéo phải, tổng quát các điểm của đường chéo trái có tọa độ [row - k][col + k] hay [i][col + k]
-            //Với k tùy ý sao cho (col + k) < N tức là vị trí của 1 phần tử đường chéo nằm trong bàn cờ
-            if (col + k < N && board[i][col + k] == 1)
-                return false;//Phát hiện quân hậu nằm trên đường chéo phải
-        }
-        return true;//Đã kiểm tra an toàn
+        //Kiểm tra đường chéo phải, tổng quát các điểm của đường chéo trái có tọa độ [row - k][col + k] hay [i][col + k]
+        //Với k tùy ý sao cho (col + k) < N tức là vị trí của 1 phần tử đường chéo nằm trong bàn cờ
+        if (col + k < N && board[i][col + k] == 1)
+            return false;//Phát hiện quân hậu nằm trên đường chéo phải
     }
-    return true;
+    return true;//Đã kiểm tra an toàn
 }
 
 void SolveQueen(int row)
